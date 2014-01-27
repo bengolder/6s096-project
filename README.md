@@ -42,3 +42,29 @@ Project Structure:
         └── somethign-test.cpp
 
 12 directories, 13 files
+
+
+N-body problem
+Each one has an initial position
+
+### Grading Scheme
+
+* 25% physics (libnbody.a) or DLL
+* 25% visualization (OpenGL )
+* 15% unit testing - setup reference trajectories and try to write software in a
+      modular fashion
+* 15% software development process
+* 10% interactivity - mouse, keyboard
+* 10% do something cool
+
+By Wednesday midnight he wants a code revie10-100 lines
+comments in the code
+openMP easy parallels calculation
+use OpenGL
+what setup g++
+What integration method? basic, Hermit, Runge=Kutta, etc.
+How do we plug and play integrators?
+    Create an interface for calculation
+How will we test our projects?
+
+
