@@ -9,6 +9,7 @@ taught by Andre Kessler.
 * [class grader](6.s096.scripts.mit.edu/grader/)
 * [class Stellar site](https://stellar.mit.edu/S/course/6/ia14/6.S096)
 * [class piazza site](https://piazza.com/class/hod1lhxsdfz6yc)
+* [class coding standards](http://web.mit.edu/6.s096/www/standards.html)
 
 
 Project Structure:
