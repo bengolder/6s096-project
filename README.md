@@ -57,14 +57,32 @@ Each one has an initial position
 * 10% interactivity - mouse, keyboard
 * 10% do something cool
 
-By Wednesday midnight he wants a code revie10-100 lines
-comments in the code
-openMP easy parallels calculation
-use OpenGL
-what setup g++
-What integration method? basic, Hermit, Runge=Kutta, etc.
-How do we plug and play integrators?
-    Create an interface for calculation
-How will we test our projects?
+### Deadlines
+
+* Monday 1/29 midnight: code review (30-100 lines, comments in code)
+* Saturday 2/1 6pm: final deadline
+
+
+### Notes
+
+* By Wednesday midnight he wants a code review 10-100 lines
+* comments in the code
+* openMP easy parallels calculation
+* use OpenGL
+* what setup g++
+* What integration method? basic, Hermit, Runge=Kutta, etc.
+* How do we plug and play integrators?
+      Create an interface for calculation
+* How will we test our projects?
+* how will we test our physics?
+* what other properties might we add?
+* how does the interaction interact with the model?
+* small list of requirements
+* write unit tests
+* write code to satisfy tests
+* review & refactor --> REPEAT
+
+
+
 
 
