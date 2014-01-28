@@ -43,7 +43,9 @@ BODY_TEST_SOURCES := \
 	tests/body-test.cpp \
 	include/nbody/body.hpp \
 
-$(OBJECTS_BODY_TEST): $(BODY_SOURCES)
+$(OBJECTS_BODY_TEST): $(BODY_TEST_SOURCES)
+
+$(OBJECTS_SYSTEM_TEST): $(SYSTEM_TEST_SOURCES)
 
 TARGET_ALL  := test.x
 SOURCES := $(shell echo src/*.cpp)
@@ -52,7 +54,9 @@ COMMON  :=
 OBJECTS := $(SOURCES:.cpp=.o)
 
 all: $(TARGET)
+
 body: $(TARGET_BODY_TEST)
+
 system: $(TARGET_SYSTEM_TEST)
 
 $(TARGET_BODY_TEST): $(OBJECTS_BODY_TEST) 
