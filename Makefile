@@ -6,3 +6,7 @@ include make/nbody.mk
 include make/nbody-test.mk
 
 include make/all_tail.mk
+
+
+# this contains a small example of what to do
+include make/make_test.mk

@@ -1,7 +1,7 @@
 # Virtual path directive - find all 
 vpath %.cpp $(DEV_DIR)/src
 
-PROJ_NAME := rational
+PROJ_NAME := nbody
 
 ## The actual result of building this project:
 ## a static library named 'librational.a'.

@@ -1,22 +1,22 @@
 ## Look in test/ for the unit test source files
 vpath %.cpp $(DEV_DIR)/test
 
-## The result of our rational-test compile: an executable
+## The result of our nbody compile: an executable
 ## named list-test.x which will run all of our unit tests.
 TARGET_PROJ_TEST := $(INSTALL_DIR)/test/$(PROJ_NAME)-test.x
 BUILD_DIR_PROJ_TEST := $(BUILD_DIR)/$(PROJ_NAME)-test
 
-## rational-test.x depends on librational.a having been created first
+## nbody-test.x depends on libnbody.a having been created first
 $(TARGET_PROJ_TEST) : $(INSTALL_DIR)/lib/lib$(PROJ_NAME).a
 
-## Link our rational-test.x executable with librational.a and gtest
+## Link our nbody-test.x executable with libnbody.a and gtest
 $(TARGET_PROJ_TEST) : LDFLAGS += -lgcov $(INSTALL_DIR)/lib/lib$(PROJ_NAME).a
 
 ## Add lots more unit tests to this list!
 OBJECTS_PROJ_TEST := \
 	$(BUILD_DIR_PROJ_TEST)/gtest-all.o \
 	$(BUILD_DIR_PROJ_TEST)/$(PROJ_NAME)-test.o \
-	$(BUILD_DIR_PROJ_TEST)/rationalTest.o \
+	$(BUILD_DIR_PROJ_TEST)/nbody.o \
 	#$(BUILD_DIR_PROJ_TEST)/add-more.o \
 	#$(BUILD_DIR_PROJ_TEST)/unit-tests.o \
 	#$(BUILD_DIR_PROJ_TEST)/right-here!.o \
@@ -40,3 +40,4 @@ $(BUILD_DIR_PROJ_TEST)/gtest-all.o : CXXFLAGS := $(filter-out -Wextra,$(CXXFLAGS
 ## Needed so gtest will compile on Cygwin.
 $(OBJECTS_PROJ_TEST) : CXXFLAGS := $(filter-out -std=c++11,$(CXXFLAGS))
 $(OBJECTS_PROJ_TEST) : CXXFLAGS := -std=gnu++0x $(CXXFLAGS)
+
