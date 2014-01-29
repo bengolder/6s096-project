@@ -1,13 +1,15 @@
 #include <vector>
-#include "body.hpp"
+#include "nbody/body.hpp"
 
 class System {
   std::vector<Body> _bodies;
 public:
-  System();
-  ~System();
+  System(): _bodies{std::vector<Body>()} {};
   
-  vector<Body> bodies() const { return _bodies; }
-  
-  void update(const double dt) {}
+  std::vector<Body> bodies() const { return _bodies; }
+
+  std::vector<std::vector<double>> compute_spatial_forces() const {}
+  void add_body(Body body);
+  void update(const double dt);
+  void print() const;
 };
