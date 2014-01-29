@@ -6,42 +6,60 @@ A particle simulator in C++ that constitutes the final assignment for 6.S096
 taught by Andre Kessler.
 
 * [class website](http://web.mit.edu/6.s096/www/)
-* [class grader](6.s096.scripts.mit.edu/grader/)
+* [class grader](http://6.s096.scripts.mit.edu/grader/)
 * [class Stellar site](https://stellar.mit.edu/S/course/6/ia14/6.S096)
 * [class piazza site](https://piazza.com/class/hod1lhxsdfz6yc)
 * [class coding standards](http://web.mit.edu/6.s096/www/standards.html)
 
 
-Project Structure:
+### Makefile targets
+
+
+* `make` — this is currently set to build all files
+* `make all` — the same as above
+* `make body` — builds all the dependencies of `install/test/body-test.x`
+* `make body-test` — runs `make body` and then immediately runs the test
+* `make clean` — removes all files created by compilation
+
+All `.o`, `.x`, and `.a` files have not been committed to the repository, under
+the assumption that they would be generated locally by running make.
+
+###Project Structure
 
     .
-    ├── Makefile
-    ├── README.md
-    ├── build
-    │   └── myproject
-    │       └── something.o
-    ├── include
-    │   └── myproject
-    │       └── someheader.h
-    ├── install
-    │   ├── bin
-    │   │   └── something
-    │   ├── include
-    │   │   └── whatever.h
-    │   ├── lib
-    │   │   └── sure.o
-    │   └── test
-    │       └── something-test.cpp
-    ├── make
-    │   ├── all_head.mk
-    │   └── all_tail.mk
-    ├── src
-    │   ├── someclass.cpp
-    │   └── something.cpp
-    └── test
-        └── somethign-test.cpp
+    |-- Makefile
+    |-- README.md
+    |-- build
+    |   `-- nbody
+    |       |-- body-test.o
+    |       `-- body.o
+    |-- include
+    |   |-- nbody
+    |   |   |-- body.hpp
+    |   |   `-- system.hpp
+    |   `-- viz
+    |-- install
+    |   |-- bin
+    |   |-- include
+    |   |   |-- body-test.o
+    |   |   `-- body.o
+    |   |-- lib
+    |   |   `-- libnbody.a
+    |   `-- test
+    |       `-- body-test.x
+    |-- make
+    |   |-- all_head.mk
+    |   |-- all_tail.mk
+    |   `-- basic_make.mk
+    |-- src
+    |   |-- body.cpp
+    |   `-- system.cpp
+    |-- test
+    |   `-- body-test.cpp
+    `-- third_party
+        `-- gtest
 
-12 directories, 13 files
+39 directories, 197 files
 
 
 N-body problem
@@ -59,7 +77,7 @@ Each one has an initial position
 
 ### Deadlines
 
-* Monday 1/29 midnight: code review (30-100 lines, comments in code)
+* Wednesday 1/29 midnight: code review (30-100 lines, comments in code)
 * Saturday 2/1 6pm: final deadline
 
 
@@ -81,8 +99,6 @@ Each one has an initial position
 * write unit tests
 * write code to satisfy tests
 * review & refactor --> REPEAT
-
-OPENGL BRANCH
 
 
 
