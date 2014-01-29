@@ -8,7 +8,7 @@ public:
   
   std::vector<Body> bodies() const { return _bodies; }
 
-  std::vector<std::vector<double>> compute_spatial_forces() const {}
+  double* compute_spatial_forces();
   void add_body(Body body);
   void update(const double dt);
   void print() const;
