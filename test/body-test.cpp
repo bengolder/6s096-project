@@ -1,4 +1,4 @@
-#include "nbody/body.hpp"
+#include <nbody/body.hpp>
 
 int main() {
 

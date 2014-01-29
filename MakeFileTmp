@@ -11,7 +11,7 @@ LDFLAGS := -Wl,--no-as-needed -lm -I include/$(PROG)
 DEBUGFLAGS := -g -O0 -D _DEBUG
 RELEASEFLAGS := -O2 -D NDEBUG
 
-TARGET  := test.x
+TARGET  := install/test/test.x
 SOURCES := $(shell echo src/*.cpp)
 HEADERS := $(shell echo include/$(PROG)/*.hpp)
 COMMON  :=

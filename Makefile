@@ -1,5 +1,5 @@
 
-include make/tiny_make.mk
+include make/basic_make.mk
 
 
 #include make/all_head.mk
