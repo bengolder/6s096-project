@@ -98,5 +98,10 @@ Each one has an initial position
 * write code to satisfy tests
 * review & refactor --> REPEAT
 
+###OpenGL Tutorials
 
+* [Learning Modern 3D Graphics Programming](http://www.arcsynthesis.org/gltut/)
+* [OpenGL Tutorial](http://www.opengl-tutorial.org/)
+* [OpenGL Programming & Modern OpenGL](http://en.wikibooks.org/wiki/OpenGL_Programming/Modern_OpenGL_Introduction)
+* [Unofficial OpenGL Software Development Kit](http://glsdk.sourceforge.net/docs/html/index.html)
 
