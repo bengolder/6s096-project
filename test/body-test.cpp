@@ -1,6 +1,6 @@
 #include <iostream>
-#include "nbody/body.hpp"
-#include "nbody/system.hpp"
+#include <nbody/system.hpp>
+#include <nbody/body.hpp>
 
 int main() {
 

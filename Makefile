@@ -1,37 +1,16 @@
-PROG := nbody
-SHELL := /bin/sh
-CC := gcc
-CXX := g++
 
-COMPILER_OPTIONS := -m64 -Wall -Wextra -Wshadow -Werror -pedantic -Iinclude
-CFLAGS := -std=c99 $(COMPILER_OPTIONS)
-CXXFLAGS := -std=c++0x -Weffc++ $(COMPILER_OPTIONS)
-LDFLAGS := -Wl,--no-as-needed -lm -I include/$(PROG)
+include make/basic_make.mk
 
-DEBUGFLAGS := -g -O0 -D _DEBUG
-RELEASEFLAGS := -O2 -D NDEBUG
 
-TARGET  := test
-SOURCES := $(shell echo src/*.cpp)
-HEADERS := $(shell echo include/$(PROG)/*.hpp)
-COMMON  :=
-OBJECTS := $(SOURCES:.cpp=.o)
+#include make/all_head.mk
 
-all: $(TARGET)
+## If you want to create more targets, feel free
+## to write the makefiles and include them here.
+#include make/nbody.mk
+#include make/nbody-test.mk
 
-$(TARGET): $(OBJECTS) $(COMMON)
-	$(CXX) $(FLAGS) $(CXXFLAGS) $(DEBUGFLAGS) -o $(TARGET) $(OBJECTS)
+#include make/all_tail.mk
 
-release: $(SOURCES) $(HEADERS) $(COMMON)
-	$(CXX) $(FLAGS) $(CXXFLAGS) $(RELEASEFLAGS) -o $(TARGET) $(SOURCES)
 
-zip:
-	-zip $(PROG).zip $(HEADERS) $(SOURCES) Makefile GRADER_INFO.txt
-
-clean:
-	-rm -f $(TARGET) $(OBJECTS) $(PROG).zip
-
-%.o: %.cpp $(HEADERS) $(COMMON)
-	$(CXX) $(CXXFLAGS) $(DEBUGFLAGS) -c -o $@ $<
-
-.PHONY : all release
+## this contains a small example of what to do
+#include make/make_test.mk
