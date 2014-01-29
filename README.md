@@ -14,15 +14,11 @@ taught by Andre Kessler.
 
 ### Makefile targets
 
-
 * `make` — this is currently set to build all files
 * `make all` — the same as above
 * `make body` — builds all the dependencies of `install/test/body-test.x`
 * `make body-test` — runs `make body` and then immediately runs the test
 * `make clean` — removes all files created by compilation
-
-All `.o`, `.x`, and `.a` files have not been committed to the repository, under
-the assumption that they would be generated locally by running make.
 
 ###Project Structure
 
