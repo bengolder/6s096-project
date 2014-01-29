@@ -18,12 +18,15 @@ taught by Andre Kessler.
 * `make all` — the same as above
 * `make body` — builds all the dependencies of `install/test/body-test.x`
 * `make body-test` — runs `make body` and then immediately runs the test
+* `make system` — builds all the dependencies of `install/test/system-test.x`
+* `make system-test` — runs `make system` and then immediately runs the test
 * `make clean` — removes all files created by compilation
 
 ###Project Structure
 
     .
     |-- Makefile
+    |-- Makefile.old
     |-- README.md
     |-- build
     |   `-- nbody
@@ -35,7 +38,6 @@ taught by Andre Kessler.
     |   |   `-- system.hpp
     |   `-- viz
     |-- install
-    |   |-- bin
     |   |-- include
     |   |   |-- body-test.o
     |   |   `-- body.o
@@ -51,11 +53,11 @@ taught by Andre Kessler.
     |   |-- body.cpp
     |   `-- system.cpp
     |-- test
-    |   `-- body-test.cpp
+    |   |-- body-test.cpp
+    |   `-- system-test.cpp
     `-- third_party
         `-- gtest
-
-39 directories, 197 files
+    38 directories, 198 files
 
 
 N-body problem
