@@ -8,15 +8,21 @@
 
 #include <iostream>
 #include <GLUT/GLUT.h>
+#include <vector>
+#include "Body.h"
+
+using namespace std;
 
 int width  = 500;
 int height = 500;
 float fov  = 65;
 float near = 1.0f;
 float far  = 500.0f;
-float rot  = 0;
+float rotx  = 0;
+float roty = 0;
 
-int nBodySize = 100;
+const int nBodySize = 100;
+Body bodies[nBodySize];
 
 void mouse( int button, int state, int x, int y )
 {
@@ -27,15 +33,42 @@ void keyboard( unsigned char c, int x, int y )
 {
     switch( c )
     {
-        case 'f':
-            std::cout << "f pressed " << "\n";
-            rot++;
-            glutPostRedisplay();
+        //case 'f':
+            //std::cout << "f pressed " << "\n";
+            //rot++;
+        //    break;
+        //case GLUT_KEY_UP:
+        //    rotx++;
+        default:
+            break;
+    }
+}
+
+void special( int i, int x, int y )
+{
+    switch( i )
+    {
+        case GLUT_KEY_UP:
+            rotx++;
+            break;
+        case GLUT_KEY_DOWN:
+            rotx--;
+            break;
+        case GLUT_KEY_LEFT:
+            roty++;
+            break;
+        case GLUT_KEY_RIGHT:
+            roty--;
+            break;
+
+        case 27:
+            //mExit();
             break;
         default:
             break;
     }
 }
+
 
 void reshape( int w, int h )
 {
@@ -62,36 +95,16 @@ void scene()
     
 	glPushMatrix();
     //glTranslatef(rot,0,0);
-    //glRotatef(rot,0,1,0);
+    glRotatef(roty, 0, 1, 0);
+    glRotatef(rotx, 1, 0, 0);
     
     glBegin( GL_POINTS );
-    //glColor3f(0.0f,0.0f,1.0f);
-    //glVertex3f( 0.0f, 1.0f, 0.0f);
     glColor4f( 0.95f, 0.207, 0.031f, 1.0f );
     for ( int i = 0; i < nBodySize; ++i )
     {
-        int sigx = rand() % 100; if (sigx<50) sigx = -1; else sigx = 1;
-        int sigy = rand() % 100; if (sigy<50) sigy = -1; else sigy = 1;
-        
-        glVertex3f( sigx * 0.01 * (rand() % 100), sigy * 0.01 * (rand() % 100), 0.0f);
+        glVertex3f( bodies[i].x(), bodies[i].y(), bodies[i].z());
     }
     glEnd();
-    //*/
-    /*
-     // Triangle code starts here3 verteces, 3 colors.
-     glBegin(GL_TRIANGLES);
-     glRotatef(rot, 0.0f, 1.0f, 1.0f);
-     glColor3f(0.0f,0.0f,1.0f);
-     glVertex3f( 0.0f, 1.0f, 0.0f);
-     glColor3f(0.0f,1.0f,0.0f);
-     glVertex3f(-1.0f,-1.0f, 0.0f);
-     glColor3f(1.0f,0.0f,0.0f);
-     glVertex3f( 1.0f,-1.0f, 0.0f);
-     glEnd();
-     */
-    // Draw the teapot
-    //glutSolidTeapot(1);
-    
     glPopMatrix();
 }
 
@@ -105,6 +118,7 @@ void display( void )
     scene();
     
 	glutSwapBuffers();
+    glutPostRedisplay();
 }
 
 void initialize()
@@ -116,20 +130,33 @@ void initialize()
     // set matrix mode
     glMatrixMode(GL_PROJECTION);
     // reset projection matrix
-    glLoadIdentity();
+    glLoadIdentity();															
     GLfloat aspect = (GLfloat) width / height;
     // set up a perspective projection matrix
 	gluPerspective(fov, aspect, near, far);
 	// specify which matrix is the current matrix
-    glMatrixMode(GL_MODELVIEW);
+    glMatrixMode(GL_MODELVIEW);													
     glShadeModel( GL_SMOOTH );
     // specify the clear value for the depth buffer
-    glClearDepth( 1.0f );
+    glClearDepth( 1.0f );														
     glEnable( GL_DEPTH_TEST );
     glDepthFunc( GL_LEQUAL );
     // specify implementation-specific hints
     glHint( GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST );
 	glClearColor(0.0, 0.0, 0.0, 1.0);
+}
+
+void setBodies()
+{
+    for ( int i = 0; i < nBodySize; ++i )
+    {
+        int sigx = rand() % 100; if (sigx<50) sigx = -1; else sigx = 1;
+        int sigy = rand() % 100; if (sigy<50) sigy = -1; else sigy = 1;
+        int sigz = rand() % 100; if (sigz<50) sigz = -1; else sigz = 1;
+        //
+        bodies[i] = {0, sigx * 0.01 * (rand() % 100), sigy * 0.01 * (rand() % 100), sigz * 0.01 * (rand() % 100) };
+    }
+   
 }
 
 int main(int argc, char **argv)
@@ -141,11 +168,14 @@ int main(int argc, char **argv)
     glutCreateWindow( "Nbody" );
     // specify callbacks
     glutDisplayFunc ( display  );
-    glutReshapeFunc ( reshape );
+    glutReshapeFunc ( reshape  );
     glutKeyboardFunc( keyboard );
+    glutSpecialFunc ( special  );
     glutMouseFunc   ( mouse    );
     
     initialize();
+    
+    setBodies();
     
     glutMainLoop();
     return 0;
