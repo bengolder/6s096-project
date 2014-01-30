@@ -9,16 +9,20 @@ CXXFLAGS := -std=c++0x -Weffc++ $(COMPILER_OPTIONS)
 DEBUGFLAGS := -g -O0 -D _DEBUG
 RELEASEFLAGS := -O2 -D NDEBUG
 
-LDFLAGS := -Linstall/lib \
-	-L/usr/local/lib \
-	-lm -lpthread \
-	-lglut
+# these are for finding dynamic & static libraries
+LDFLAGS := -L install/lib \
+		   -L /usr/local/lib \
+		   -l m -l pthread \
+		   -l GL \
+		   -L /System/Library/Frameworks/OpenGL.framework/Libraries \
+		   -l glut
 
+# these are used to find .h header files, based on includes from .cpp files
 INCLUDEFLAGS := -I include/$(PROG) \
-				 -I install/lib \
-				 -I third_party/gtest \
-				 -I third_party/gtest/include \
-				 -I /usr/local/include/GL/
+				-I install/lib \
+				-I third_party/gtest \
+				-I third_party/gtest/include \
+				-I /usr/local/include/GL/
 
 # $@ is the current target
 # $^ is all the prerequisites
@@ -36,8 +40,10 @@ install/test/system-test.x: install/include/system-test.o \
 	ar rcs install/lib/libnbody.a install/include/body.o install/include/system.o
 	$(CXX) -o $@ $< $(LDFLAGS) -lnbody
 
-install/test/viz-test.x: install/include/window.o
-	$(CXX) -o $@ $< $(LDFLAGS) 
+# vizualization library
+install/test/window-test.x: test/window-test.cpp
+	$(CXX) -o install/include/window-test.o -c $< $(INCLUDEFLAGS) $(CXXFLAGS) $(DEBUGFLAGS)
+	$(CXX) -o $a $< $(LDFLAGS)
 
 # object files
 install/include/body.o: src/body.cpp
@@ -50,8 +56,6 @@ install/include/system.o: src/system.cpp
 install/include/system-test.o: test/system-test.cpp
 	$(CXX) -c -o $@ $< $(INCLUDEFLAGS) $(CXXFLAGS) $(DEBUGFLAGS)
 
-install/include/window.o: src/window.cpp
-	$(CXX) -c -o $@ $< $(INCLUDEFLAGS) $(CXXFLAGS) $(DEBUGFLAGS)
 
 # compiling targets
 .PHONY : all body body-test system system-test clean test viz
@@ -61,18 +65,17 @@ all: install/test/body-test.x
 body: install/test/body-test.x
 
 body-test: install/test/body-test.x
-	install/test/body-test.x
+	$< # run prereq
 
 system: install/test/system-test.x
 
 system-test: install/test/system-test.x
 	install/test/body-test.x
-	install/test/system-test.x
+	$< # run prereq
 
-viz: install/test/viz-test.x
-	install/test/viz-test.x
+viz: install/test/window-test.x
+	$< # run prereq
 
-viz-test: install/test/viz-test.x
 
 test: system-test
 
