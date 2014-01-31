@@ -121,6 +121,7 @@ __Mac__
 
 __Linux__
 
-* sudo apt-get install libglew1.5
-* sudo apt-get install libglew1.5-dev
+* `sudo apt-get install libsdl-dev`
+* `sudo apt-get install libglew-utils`
+* `sudo apt-get install libglew1.5-dev`
 
