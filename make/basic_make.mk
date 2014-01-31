@@ -6,11 +6,13 @@ UNAME := $(shell uname)
 
 ifeq ($(UNAME), Linux)
 	GLFLAG := -lGL
-	SDLFLAG := /usr/local/include/SDL2
+	SDLINCLUDE := /usr/local/include/SDL2
+	SDLFLAG = -framework SDL2
 endif
 ifeq ($(UNAME), Darwin)
 	GLFLAG := -framework OpenGL
-	SDLFLAG := /usr/local/include/SDL2
+	SDLINCLUDE := /usr/local/include/SDL2
+	SDLFLAG = -framework SDL2
 endif
 
 COMPILER_OPTIONS := -m64 -Wall -Wextra -Wshadow -Werror -pedantic -Iinclude
@@ -23,14 +25,15 @@ RELEASEFLAGS := -O2 -D NDEBUG
 LDFLAGS := -L install/lib \
 		   -L /usr/local/lib \
 		   -l m -l pthread  \
-		   $(GLFLAG)
+		   $(GLFLAG) \
+		   $(SDLFLAG)
 
 # these are used to find .h header files, based on includes from .cpp files
 INCLUDEFLAGS := -I include/$(PROG) \
 				-I install/lib \
 				-I third_party/gtest \
 				-I third_party/gtest/include \
-				-I $(SDL2)
+				-I $(SDLINCLUDE)
 
 # $@ is the current target
 # $^ is all the prerequisites
@@ -50,10 +53,9 @@ install/test/system-test.x: install/include/system-test.o \
 
 # vizualization library
 install/test/window-test.x: test/window-test.cpp | install/test
-	$(CXX) -o $@ $< $(INCLUDEFLAGS) $(CXXFLAGS) $(DEBUGFLAGS)
+	$(CXX) -o $@ $< $(INCLUDEFLAGS) $(CXXFLAGS) $(DEBUGFLAGS) $(LDFLAGS)
 
 # object files
-
 install/include/body.o: src/body.cpp | install/include
 	$(CXX) -c -o $@ $< $(INCLUDEFLAGS) $(CXXFLAGS) $(DEBUGFLAGS)
 install/include/body-test.o: test/body-test.cpp | install/include
