@@ -21,7 +21,7 @@ endif
 
 COMPILER_OPTIONS := -m64 -Wall -Wextra -Wshadow -Werror -pedantic -Iinclude
 CFLAGS := -std=c99 $(COMPILER_OPTIONS)
-CXXFLAGS := -std=c++11 $(COMPILER_OPTIONS)
+CXXFLAGS := -std=c++0x $(COMPILER_OPTIONS)
 DEBUGFLAGS := -g -O0 -D _DEBUG
 RELEASEFLAGS := -O2 -D NDEBUG
 
