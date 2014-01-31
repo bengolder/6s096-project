@@ -97,11 +97,30 @@ Each one has an initial position
 * write unit tests
 * write code to satisfy tests
 * review & refactor --> REPEAT
+* We should use SFML, GLFW, or SDL for making windows and handling input
+* before including that, we should include GLEW
+* and we should also use GLM
+
 
 ###OpenGL Tutorials
 
+* [Andre's Recommended OpenGL tutorial](http://www.open.gl/)
 * [Learning Modern 3D Graphics Programming](http://www.arcsynthesis.org/gltut/)
 * [OpenGL Tutorial](http://www.opengl-tutorial.org/)
 * [OpenGL Programming & Modern OpenGL](http://en.wikibooks.org/wiki/OpenGL_Programming/Modern_OpenGL_Introduction)
 * [Unofficial OpenGL Software Development Kit](http://glsdk.sourceforge.net/docs/html/index.html)
+
+### opengl, sdl, glew setup installation instructions
+
+__Mac__
+
+* install everything using homebrew: `brew install glut glew sdl2`
+* download [framework .dmg](http://www.libsdl.org/release/SDL2-2.0.1.dmg), then
+  copy it into `/Library/Frameworks`.
+* done. We might be able to remove one of those steps.
+
+__Linux__
+
+* sudo apt-get install libglew1.5
+* sudo apt-get install libglew1.5-dev
 
