@@ -7,16 +7,16 @@ UNAME := $(shell uname)
 ifeq ($(UNAME), Linux)
 	GLFLAG := -lGL
 	SDLINCLUDE := /usr/local/include/SDL2
-	SDLFLAG = -framework SDL2
-	GLEWINCLUDE := /usr/local/include/GL
-	GLEWFLAG := GLEW
+	SDLFLAG = -lSDL2
+	GLEWINCLUDE := /usr/include/GL
+	GLEWFLAG := -L /usr/lib/x86_64-linux-gnu/ -lGLEW
 endif
 ifeq ($(UNAME), Darwin)
 	GLFLAG := -framework OpenGL
 	SDLINCLUDE := /usr/local/include/SDL2
 	SDLFLAG = -framework SDL2
 	GLEWINCLUDE := /usr/local/include/GL
-	GLEWFLAG := GLEW
+	GLEWFLAG := -lGLEW
 endif
 
 COMPILER_OPTIONS := -m64 -Wall -Wextra -Wshadow -Werror -pedantic -Iinclude
@@ -31,7 +31,7 @@ LDFLAGS := -L install/lib \
 		   -l m -l pthread  \
 		   $(GLFLAG) \
 		   $(SDLFLAG) \
-		   -l $(GLEWFLAG)
+		   $(GLEWFLAG)
 
 # these are used to find .h header files, based on includes from .cpp files
 INCLUDEFLAGS := -I include/$(PROG) \

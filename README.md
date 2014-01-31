@@ -121,4 +121,6 @@ __Mac__
 
 __Linux__
 
-* _unknown_
+* sudo apt-get install libglew1.5
+* sudo apt-get install libglew1.5-dev
+
