@@ -104,6 +104,7 @@ Each one has an initial position
 
 ###OpenGL Tutorials
 
+* [Andre's Recommended OpenGL tutorial](http://www.open.gl/)
 * [Learning Modern 3D Graphics Programming](http://www.arcsynthesis.org/gltut/)
 * [OpenGL Tutorial](http://www.opengl-tutorial.org/)
 * [OpenGL Programming & Modern OpenGL](http://en.wikibooks.org/wiki/OpenGL_Programming/Modern_OpenGL_Introduction)
