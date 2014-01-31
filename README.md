@@ -97,6 +97,10 @@ Each one has an initial position
 * write unit tests
 * write code to satisfy tests
 * review & refactor --> REPEAT
+* We should use SFML, GLFW, or SDL for making windows and handling input
+* before including that, we should include GLEW
+* and we should also use GLM
+
 
 ###OpenGL Tutorials
 
@@ -104,4 +108,5 @@ Each one has an initial position
 * [OpenGL Tutorial](http://www.opengl-tutorial.org/)
 * [OpenGL Programming & Modern OpenGL](http://en.wikibooks.org/wiki/OpenGL_Programming/Modern_OpenGL_Introduction)
 * [Unofficial OpenGL Software Development Kit](http://glsdk.sourceforge.net/docs/html/index.html)
+
 
