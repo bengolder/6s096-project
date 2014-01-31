@@ -110,4 +110,15 @@ Each one has an initial position
 * [OpenGL Programming & Modern OpenGL](http://en.wikibooks.org/wiki/OpenGL_Programming/Modern_OpenGL_Introduction)
 * [Unofficial OpenGL Software Development Kit](http://glsdk.sourceforge.net/docs/html/index.html)
 
+### opengl, sdl, glew setup installation instructions
 
+__Mac__
+
+* install everything using homebrew: `brew install glut glew sdl2`
+* download [framework .dmg](http://www.libsdl.org/release/SDL2-2.0.1.dmg), then
+  copy it into `/Library/Frameworks`.
+* done. We might be able to remove one of those steps.
+
+__Linux__
+
+* _unknown_
