@@ -1,19 +1,10 @@
-//
-//  Body.cpp
-//  OpenGL_Test
-//
-//  Created by j_duro on 1/30/14.
-//  Copyright (c) 2014 j_duro. All rights reserved.
-//
-
-#include "Body.h"
+#include "body.h"
 
 #include <cstdlib>
 #include <cmath>
 #include <iostream>
 #include "body.h"
 
-/*
 void Body::update(const double Fx, const double Fy, const double dt){
     // Integration using forward euler's method
     _x += _dx*dt; // deltaposition = velocity*deltatime
@@ -32,4 +23,3 @@ void Body::print() const {
     << _y << " dx=" << _dx << " dy="
     << _dy << " velocity=" << velocity() << "\n";
 }
-*/

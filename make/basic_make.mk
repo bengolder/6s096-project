@@ -6,9 +6,11 @@ UNAME := $(shell uname)
 
 ifeq ($(UNAME), Linux)
 	GLFLAG := -lGL
+	SDLFLAG := /usr/local/include/SDL2
 endif
 ifeq ($(UNAME), Darwin)
 	GLFLAG := -framework OpenGL
+	SDLFLAG := /usr/local/include/SDL2
 endif
 
 COMPILER_OPTIONS := -m64 -Wall -Wextra -Wshadow -Werror -pedantic -Iinclude
@@ -27,7 +29,8 @@ LDFLAGS := -L install/lib \
 INCLUDEFLAGS := -I include/$(PROG) \
 				-I install/lib \
 				-I third_party/gtest \
-				-I third_party/gtest/include
+				-I third_party/gtest/include \
+				-I $(SDL2)
 
 # $@ is the current target
 # $^ is all the prerequisites
