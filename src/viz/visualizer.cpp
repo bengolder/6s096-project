@@ -11,7 +11,6 @@
 GLuint viz::Visualizer::shaderFromFile( std::string filePath, GLenum shaderType ) {
   std::cout << "getting " << filePath << " with " << shaderType << "\n";
   GLuint shaderID = 0;
-  return shaderID;
   // get file
   std::string fileString;
   std::ifstream sourceFile;
@@ -22,8 +21,9 @@ GLuint viz::Visualizer::shaderFromFile( std::string filePath, GLenum shaderType 
         std::istreambuf_iterator<char>() 
         );
     // create shader from resulting string
-    shaderFromString( fileString, shaderType );
+    shaderID = shaderFromString( fileString, shaderType );
   }
+  return shaderID;
 }
 
 GLuint viz::Visualizer::shaderFromString( std::string shaderString, GLenum shaderType ) {
