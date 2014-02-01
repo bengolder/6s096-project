@@ -11,9 +11,26 @@ int main() {
   glewExperimental = GL_TRUE;
   glewInit();
 
-  GLuint vertexBuffer;
-  glGenBuffers(1, &vertexBuffer);
-  printf("%u\n", vertexBuffer);
+  float vertices[] = {
+      0.0f,  0.5f,
+      0.5f, -0.5f,
+     -0.5f, -0.5f,
+  };
+
+  // initialize obeject to hold buffer
+  // this is actually just a number that points to the object
+  // GLuint is just an unsigned integer that is cross-platform
+  GLuint vertexBufferObject;
+  // create the buffer, store the number key
+  glGenBuffers(1, &vertexBufferObject );
+  // activates the object
+  glBindBuffer( GL_ARRAY_BUFFER, vertexBufferObject );
+  glBufferData( GL_ARRAY_BUFFER, sizeof( vertices ), vertices, GL_STATIC_DRAW );
+  // Drawing options for buffers
+  // GL_STATIC_DRAW - oploaded once, drawn many times
+  // GL_DYNAMIC_DRAW - changed from time to time, drawn many times
+  // GL_STREAM_DRAW - change almost every time it is drawn (like a UI)
+
   while (true) {
     if (SDL_PollEvent(&windowEvent)) {
       if (windowEvent.type == SDL_QUIT) break;

@@ -61,6 +61,11 @@ install/test/system-test.x: install/include/system-test.o \
 install/test/window-test.x: test/window-test.cpp | install/test
 	$(CXX) -o $@ $< $(INCLUDEFLAGS) $(CXXFLAGS) $(DEBUGFLAGS) $(LDFLAGS)
 
+install/test/viz-test.x: install/include/viz-test.o \
+					     install/include/visualizer.o 
+	ar rcs install/lib/libnbodyviz.a install/include/visualizer.o
+	$(CXX) -o $@ $< $(LDFLAGS) -lnbodyviz
+
 # object files
 install/include/body.o: src/body.cpp | install/include
 	$(CXX) -c -o $@ $< $(INCLUDEFLAGS) $(CXXFLAGS) $(DEBUGFLAGS)
@@ -70,6 +75,12 @@ install/include/body-test.o: test/body-test.cpp | install/include
 install/include/system.o: src/system.cpp | install/include
 	$(CXX) -c -o $@ $< $(INCLUDEFLAGS) $(CXXFLAGS) $(DEBUGFLAGS)
 install/include/system-test.o: test/system-test.cpp | install/include
+	$(CXX) -c -o $@ $< $(INCLUDEFLAGS) $(CXXFLAGS) $(DEBUGFLAGS)
+
+# viz objects
+install/include/visualizer.o: src/viz/visualizer.cpp | install/include
+	$(CXX) -c -o $@ $< $(INCLUDEFLAGS) $(CXXFLAGS) $(DEBUGFLAGS)
+install/include/viz-test.o: test/viz-test.cpp | install/include
 	$(CXX) -c -o $@ $< $(INCLUDEFLAGS) $(CXXFLAGS) $(DEBUGFLAGS)
 
 install:
@@ -95,10 +106,12 @@ system-test: install/test/system-test.x
 	install/test/body-test.x
 	$< # run prereq
 
-viz: install/test/window-test.x
+viz: install/test/viz-test.x
 	$<
 
-test: system-test
+test:
+	make clean
+	make viz
 
 clean:
 	rm -f install/test/*.x install/lib/*.a install/include/*.o
