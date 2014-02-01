@@ -109,7 +109,6 @@ Each one has an initial position
 * [OpenGL Tutorial](http://www.opengl-tutorial.org/)
 * [OpenGL Programming & Modern OpenGL](http://en.wikibooks.org/wiki/OpenGL_Programming/Modern_OpenGL_Introduction)
 * [Unofficial OpenGL Software Development Kit](http://glsdk.sourceforge.net/docs/html/index.html)
-
 ### opengl, sdl, glew setup installation instructions
 
 __Mac__

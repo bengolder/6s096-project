@@ -14,7 +14,6 @@ int main() {
   GLuint vertexBuffer;
   glGenBuffers(1, &vertexBuffer);
   printf("%u\n", vertexBuffer);
-
   while (true) {
     if (SDL_PollEvent(&windowEvent)) {
       if (windowEvent.type == SDL_QUIT) break;
