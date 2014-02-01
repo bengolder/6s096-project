@@ -27,14 +27,17 @@ GLuint viz::Visualizer::shaderFromFile( std::string filePath, GLenum shaderType 
 }
 
 GLuint viz::Visualizer::shaderFromString( std::string shaderString, GLenum shaderType ) {
-  // create shader ID and sset shader source
+  // create shader ID and set shader source
   GLuint shaderID = 0;
+  std::cout << "getting shader from string";
   shaderID = glCreateShader( shaderType );
   const GLchar* shaderSource = shaderString.c_str();
   glShaderSource( shaderID, 1, (const GLchar**)&shaderSource, NULL );
   // compile shader source
+  std::cout << "compiling shader";
   glCompileShader( shaderID );
   //Check shader for errors
+  std::cout << "checking for shader compile errors";
   GLint shaderCompiled = GL_FALSE;
   glGetShaderiv( shaderID, GL_COMPILE_STATUS, &shaderCompiled );
   if( shaderCompiled != GL_TRUE ) {
