@@ -7,11 +7,13 @@
 #include <iostream>
 
 int main() {
-  std::string path = "src/shaders/vertex001.glsl";
+  std::string path = "/Users/bgolder/projects/s096/nbody/src/shaders/vertex001.glsl";
   viz::Visualizer vi = viz::Visualizer();
   std::cout << "Built Visualizer\n";
   GLuint shaderId = vi.shaderFromFile( path, GL_VERTEX_SHADER );
-  std::cout << "Built shader " << shaderId << " from " << path << "\n";
+  if( shaderId ) {
+    std::cout << "Built shader " << shaderId << " from " << path << "\n";
+  }
   return 0;
 }
 
